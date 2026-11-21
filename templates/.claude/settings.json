@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PreInvocation": [
+      {
+        "matcher": ".*",
+        "command": "./ai/bin/fe-core route"
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|edit_file|write_file",
+        "command": "./ai/bin/fe-core check-edit"
+      }
+    ]
+  }
+}

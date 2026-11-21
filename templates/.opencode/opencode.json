@@ -1,0 +1,17 @@
+{
+  "$schema": "https://opencode.ai/config.schema.json",
+  "name": "elegans-frontend-swarm",
+  "instructions": "AGENTS.md",
+  "hooks": {
+    "onUserPrompt": "./ai/bin/fe-core route",
+    "onFileWrite": "./ai/bin/fe-core check-edit"
+  },
+  "agents": [
+    { "name": "fe_senior_dev", "path": ".claude/agents/fe_senior_dev.md" },
+    { "name": "fe_qa_tester", "path": ".claude/agents/fe_qa_tester.md" },
+    { "name": "fe_code_auditor", "path": ".claude/agents/fe_code_auditor.md" },
+    { "name": "fe_ui_ux_critic", "path": ".claude/agents/fe_ui_ux_critic.md" },
+    { "name": "fe_devops_deployer", "path": ".claude/agents/fe_devops_deployer.md" },
+    { "name": "fe_design_scout", "path": ".claude/agents/fe_design_scout.md" }
+  ]
+}
