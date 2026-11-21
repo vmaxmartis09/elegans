@@ -22,7 +22,8 @@ Commands:
   bus <put|get|remember|recall|list> ...  Zero-Token Shared Bus & Living Memory
   browser-bridge                          Detect Ego Lite (protect Dad) -> fallback AGY Browser
   verdict <report.md> [--require ...]     Enforce @fe:verdict JSON & PNG Magic-Byte Evidence
-  sync [--check]                          Sync .claude <-> .agents <-> ai/skills (0 drift)"
+  sync [--check]                          Sync .claude <-> .agents <-> ai/skills (0 drift)
+  update                                  Pull & Update latest Elegans swarm from GitHub"
     );
 }
 
@@ -49,6 +50,7 @@ fn main() {
         "browser-bridge" => devops_sync::run_browser_bridge(),
         "verdict" => bus_verdict::run_verdict(rest),
         "sync" => devops_sync::run_sync(rest),
+        "update" | "upgrade" | "pull" => devops_sync::run_update(),
         "--help" | "-h" | "help" => {
             print_help();
             0

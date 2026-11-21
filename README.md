@@ -24,6 +24,33 @@ git clone https://github.com/vmaxmartis09/elegans.git /tmp/elegans && /tmp/elega
 
 ---
 
+## 🔄 Cập Nhật Elegans Lên Bản Mới Nhất (Update / Pull)
+
+Khi ở bất kỳ dự án nào đang dùng Elegans, Ngài có thể cập nhật ngay bằng **1 trong 3 cách sau**:
+
+### Cách 1: Dùng lệnh trực tiếp từ lõi Rust (Nhanh nhất)
+```bash
+./ai/bin/fe-core update
+```
+
+### Cách 2: Chạy 1 dòng lệnh qua cURL (macOS / Linux)
+```bash
+curl -fsSL https://raw.githubusercontent.com/vmaxmartis09/elegans/main/update.sh | bash
+```
+
+### Cách 3: Chạy 1 dòng lệnh qua PowerShell (Windows)
+```powershell
+irm https://raw.githubusercontent.com/vmaxmartis09/elegans/main/update.ps1 | iex
+```
+
+Lệnh update sẽ tự động kéo toàn bộ bản cập nhật mới nhất của:
+- Binary Rust `fe-core`
+- Toàn bộ 6 Subagents
+- Toàn bộ 10 Core Skills
+- Tự động chạy `fe-core sync` để đảm bảo 0-drift!
+
+---
+
 ## 🏷️ Đội Ngũ 6 Subagents Của Elegans
 
 | Agent | Vai Trò | Cấp Độ Ponytail | Nhãn Điều Động |

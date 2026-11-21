@@ -265,3 +265,30 @@ pub fn run_sync(args: &[String]) -> i32 {
     );
     if check_only && drift > 0 { 1 } else { 0 }
 }
+
+pub fn run_update() -> i32 {
+    let root = crate::router::detect_workspace_root();
+    println!("🔄 Đang kéo bản cập nhật Elegans mới nhất từ GitHub (vmaxmartis09/elegans)...");
+
+    let status = if cfg!(windows) {
+        let ps_cmd = format!("irm https://raw.githubusercontent.com/vmaxmartis09/elegans/main/install.ps1 | iex");
+        Command::new("powershell").args(["-Command", &ps_cmd]).status()
+    } else {
+        let sh_cmd = format!(
+            "curl -fsSL https://raw.githubusercontent.com/vmaxmartis09/elegans/main/install.sh | bash -s -- \"{}\"",
+            root.display()
+        );
+        Command::new("bash").args(["-c", &sh_cmd]).status()
+    };
+
+    match status {
+        Ok(s) if s.success() => {
+            println!("✨ @fe:update{{\"ok\":true,\"msg\":\"Elegans đã cập nhật thành công lên bản mới nhất!\"}}");
+            0
+        }
+        _ => {
+            eprintln!("❌ Lỗi khi cập nhật Elegans từ GitHub.");
+            1
+        }
+    }
+}
