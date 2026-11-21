@@ -271,11 +271,14 @@ pub fn run_update() -> i32 {
     println!("🔄 Đang kéo bản cập nhật Elegans mới nhất từ GitHub (vmaxmartis09/elegans)...");
 
     let status = if cfg!(windows) {
-        let ps_cmd = format!("irm https://raw.githubusercontent.com/vmaxmartis09/elegans/main/install.ps1 | iex");
+        let ps_cmd = format!(
+            "git clone --depth=1 https://github.com/vmaxmartis09/elegans.git \"$env:TEMP\\elegans-upd\"; & \"$env:TEMP\\elegans-upd\\install.ps1\" -TargetDir \"{}\"; Remove-Item -Recurse -Force \"$env:TEMP\\elegans-upd\"",
+            root.display()
+        );
         Command::new("powershell").args(["-Command", &ps_cmd]).status()
     } else {
         let sh_cmd = format!(
-            "curl -fsSL https://raw.githubusercontent.com/vmaxmartis09/elegans/main/install.sh | bash -s -- \"{}\"",
+            "rm -rf /tmp/elegans-upd && git clone --depth=1 https://github.com/vmaxmartis09/elegans.git /tmp/elegans-upd && /tmp/elegans-upd/install.sh \"{}\" && rm -rf /tmp/elegans-upd",
             root.display()
         );
         Command::new("bash").args(["-c", &sh_cmd]).status()

@@ -22,13 +22,21 @@ mkdir -p "$TARGET_DIR/ai/bin" \
 
 # 2. Cài đặt binary Rust fe-core
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd || echo "")"
-if [ -f "$SCRIPT_DIR/ai/bin/fe-core" ] && [ "$SCRIPT_DIR/ai/bin/fe-core" != "$TARGET_DIR/ai/bin/fe-core" ]; then
-    cp "$SCRIPT_DIR/ai/bin/fe-core" "$TARGET_DIR/ai/bin/fe-core"
-elif [ -f "/Volumes/Data/vicieo/ai/bin/fe-core" ] && [ "/Volumes/Data/vicieo/ai/bin/fe-core" != "$TARGET_DIR/ai/bin/fe-core" ]; then
-    cp "/Volumes/Data/vicieo/ai/bin/fe-core" "$TARGET_DIR/ai/bin/fe-core"
-elif command -v cargo >/dev/null 2>&1 && [ -f "$SCRIPT_DIR/Cargo.toml" ]; then
-    echo "🦀 Đang biên dịch fe-core bằng Cargo..."
-    (cd "$SCRIPT_DIR" && cargo build --release && cp target/release/fe-core "$TARGET_DIR/ai/bin/fe-core")
+SRC_BIN="$SCRIPT_DIR/ai/bin/fe-core"
+DEST_BIN="$TARGET_DIR/ai/bin/fe-core"
+
+if [ -f "$SRC_BIN" ]; then
+    SRC_REAL="$(cd "$(dirname "$SRC_BIN")" 2>/dev/null && pwd)/$(basename "$SRC_BIN")"
+    DEST_REAL="$(cd "$(dirname "$DEST_BIN")" 2>/dev/null && pwd)/$(basename "$DEST_BIN")"
+    if [ "$SRC_REAL" != "$DEST_REAL" ]; then
+        cp "$SRC_BIN" "$DEST_BIN" 2>/dev/null || true
+    fi
+elif [ -f "/Volumes/Data/vicieo/ai/bin/fe-core" ]; then
+    SRC_REAL="$(cd /Volumes/Data/vicieo/ai/bin 2>/dev/null && pwd)/fe-core"
+    DEST_REAL="$(cd "$(dirname "$DEST_BIN")" 2>/dev/null && pwd)/$(basename "$DEST_BIN")"
+    if [ "$SRC_REAL" != "$DEST_REAL" ]; then
+        cp "/Volumes/Data/vicieo/ai/bin/fe-core" "$DEST_BIN" 2>/dev/null || true
+    fi
 fi
 
 chmod +x "$TARGET_DIR/ai/bin/fe-core" 2>/dev/null || true
