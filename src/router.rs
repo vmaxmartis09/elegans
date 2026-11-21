@@ -175,6 +175,15 @@ pub fn classify_genre(prompt_lc: &str) -> (&'static str, &'static str) {
 }
 
 pub fn classify_lane(prompt_lc: &str) -> &'static str {
+    if prompt_lc.contains("tiếp quản")
+        || prompt_lc.contains("take over")
+        || prompt_lc.contains("làm chủ")
+        || prompt_lc.contains("khám bệnh")
+        || prompt_lc.contains("đọc hiểu dự án")
+    {
+        return "FE-MASTER-BUILD";
+    }
+
     let is_deploy = prompt_lc.contains("deploy")
         || prompt_lc.contains("vercel")
         || prompt_lc.contains("cloudflare")
@@ -319,6 +328,12 @@ pub fn determine_agents(lane: &str, prompt_lc: &str) -> Vec<String> {
         || prompt_lc.contains("tham khảo web")
         || prompt_lc.contains("học hỏi");
 
+    let is_takeover = prompt_lc.contains("tiếp quản")
+        || prompt_lc.contains("take over")
+        || prompt_lc.contains("làm chủ")
+        || prompt_lc.contains("khám bệnh")
+        || prompt_lc.contains("đọc hiểu dự án");
+
     let mut agents = match lane {
         "FE-DEPLOY" => vec![
             "fe_code_auditor".to_string(),
@@ -339,27 +354,36 @@ pub fn determine_agents(lane: &str, prompt_lc: &str) -> Vec<String> {
             }
         }
         "FE-MASTER-BUILD" => {
-            let needs_design = prompt_lc.contains("mới")
-                || prompt_lc.contains("tạo")
-                || prompt_lc.contains("dựng")
-                || prompt_lc.contains("thiết kế")
-                || prompt_lc.contains("redesign")
-                || prompt_lc.contains("landing")
-                || prompt_lc.contains("ui")
-                || prompt_lc.contains("giao diện");
-            if needs_design {
+            if is_takeover {
                 vec![
-                    "fe_ui_ux_critic".to_string(),
                     "fe_senior_dev".to_string(),
                     "fe_code_auditor".to_string(),
+                    "fe_ui_ux_critic".to_string(),
                     "fe_qa_tester".to_string(),
                 ]
             } else {
-                vec![
-                    "fe_senior_dev".to_string(),
-                    "fe_code_auditor".to_string(),
-                    "fe_qa_tester".to_string(),
-                ]
+                let needs_design = prompt_lc.contains("mới")
+                    || prompt_lc.contains("tạo")
+                    || prompt_lc.contains("dựng")
+                    || prompt_lc.contains("thiết kế")
+                    || prompt_lc.contains("redesign")
+                    || prompt_lc.contains("landing")
+                    || prompt_lc.contains("ui")
+                    || prompt_lc.contains("giao diện");
+                if needs_design {
+                    vec![
+                        "fe_ui_ux_critic".to_string(),
+                        "fe_senior_dev".to_string(),
+                        "fe_code_auditor".to_string(),
+                        "fe_qa_tester".to_string(),
+                    ]
+                } else {
+                    vec![
+                        "fe_senior_dev".to_string(),
+                        "fe_code_auditor".to_string(),
+                        "fe_qa_tester".to_string(),
+                    ]
+                }
             }
         }
         _ => {
@@ -453,6 +477,22 @@ pub fn find_surgical_targets(root: &Path, prompt_lc: &str) -> Vec<SurgicalTarget
 }
 
 pub fn determine_solution_archetype(genre: &str, prompt_lc: &str, _stack: &str) -> (String, Vec<String>) {
+    if prompt_lc.contains("tiếp quản")
+        || prompt_lc.contains("take over")
+        || prompt_lc.contains("làm chủ")
+        || prompt_lc.contains("khám bệnh")
+        || prompt_lc.contains("đọc hiểu dự án")
+    {
+        return (
+            "Elegans Takeover & Health Audit: Full-Spectrum Architecture Inspection, Component Size Audit (> 250 loc), Anti-Slop Check & Prioritized Action Plan.".to_string(),
+            vec![
+                "1. Quét toàn bộ kiến trúc & phân tích AST dependencies".to_string(),
+                "2. Soi component phình to & code bừa bãi theo chuẩn Elegans Co-location".to_string(),
+                "3. Lập Bản đồ Hành động Phẫu thuật (Top 3-5 việc cần làm & cải thiện ngay)".to_string(),
+            ],
+        );
+    }
+
     let plan = vec![
         "1. Surgical target slice inspection (fe-core slice)".to_string(),
         "2. Implement changes with Zero-Slop ViciEO UI Craft & Two-Tier State".to_string(),
