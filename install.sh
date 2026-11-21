@@ -22,19 +22,13 @@ mkdir -p "$TARGET_DIR/ai/bin" \
 
 # 2. Cài đặt binary Rust fe-core
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd || echo "")"
-if [ -f "$SCRIPT_DIR/ai/bin/fe-core" ]; then
+if [ -f "$SCRIPT_DIR/ai/bin/fe-core" ] && [ "$SCRIPT_DIR/ai/bin/fe-core" != "$TARGET_DIR/ai/bin/fe-core" ]; then
     cp "$SCRIPT_DIR/ai/bin/fe-core" "$TARGET_DIR/ai/bin/fe-core"
-elif [ -f "/Volumes/Data/vicieo/ai/bin/fe-core" ]; then
+elif [ -f "/Volumes/Data/vicieo/ai/bin/fe-core" ] && [ "/Volumes/Data/vicieo/ai/bin/fe-core" != "$TARGET_DIR/ai/bin/fe-core" ]; then
     cp "/Volumes/Data/vicieo/ai/bin/fe-core" "$TARGET_DIR/ai/bin/fe-core"
 elif command -v cargo >/dev/null 2>&1 && [ -f "$SCRIPT_DIR/Cargo.toml" ]; then
     echo "🦀 Đang biên dịch fe-core bằng Cargo..."
     (cd "$SCRIPT_DIR" && cargo build --release && cp target/release/fe-core "$TARGET_DIR/ai/bin/fe-core")
-else
-    # Tải binary từ GitHub Releases
-    OS="$(uname -s | tr '[:upper:]' '[:lower:]')"
-    ARCH="$(uname -m)"
-    echo "⬇️  Đang tải binary fe-core cho $OS-$ARCH..."
-    curl -fsSL "https://github.com/vmaxmartis09/elegans/releases/latest/download/fe-core-$OS-$ARCH" -o "$TARGET_DIR/ai/bin/fe-core" || true
 fi
 
 chmod +x "$TARGET_DIR/ai/bin/fe-core" 2>/dev/null || true
