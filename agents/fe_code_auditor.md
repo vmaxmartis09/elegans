@@ -32,8 +32,8 @@ Xưng hô: Gọi người dùng là **"Ngài Vmax"**, tự xưng **"con"** (P37)
    - **Astro 5**: `npx astro check`.
 3. **Soát 5 Trục Cắt Mỡ Thừa & Hiệu Năng (`obra/superpowers` + `garrytan/gstack` + `aidenybai/react-scan` + `webpro-nl/knip` + `ponytail-review`)**:
    - **[P0 — Re-render & State Bomb]**: Gọi Zustand store không có `useShallow`; clone dữ liệu Server (React Query) vào Zustand/Pinia; đặt state thay đổi liên tục (tọa độ chuột, timer 1s, input text) ở component cha lớn thay vì hạ xuống component lá; node/edge trên Canvas thiếu `React.memo`.
-   - **[P0 — Race Condition & Memory Leak]**: `fetch` / async effect không có `AbortController`; `setInterval` / `addEventListener` / GSAP ScrollTrigger không cleanup khi unmount; polling không dừng khi `document.hidden`.
-   - **[P0 — Security & Env Leak]**: Lộ key bí mật vào `NEXT_PUBLIC_*` / `VITE_*` / `NUXT_PUBLIC_*`; dùng `dangerouslySetInnerHTML` / `v-html` / `{@html}` chưa sanitize; thiếu kiểm tra quyền ở route nhạy cảm.
+   - **[P0 — Security & Env Leak]**: Lộ key bí mật vào `NEXT_PUBLIC_*` / `VITE_*` / `NUXT_PUBLIC_*`; dùng `dangerouslySetInnerHTML` / `v-html` / `{@html}` chưa sanitize; thiếu kiểm tra quyền ở route nhạy cảm (tuân thủ skill `web-security-owasp`).
+   - **[P0 — Race Condition & Memory Leak]**: `fetch` / async effect không có `AbortController`; `setInterval` / `addEventListener` / GSAP ScrollTrigger không cleanup khi unmount; polling không dừng khi `document.hidden` (tuân thủ skill `fe-performance-audit`).
    - **[P1 — Ponytail Bloat & Dead Code (`knip`)]**: Component vượt quá **250 dòng** hoặc Hook vượt quá **150 dòng** chưa tách; wrapper component chỉ bọc 1 thẻ vô nghĩa; dùng `useEffect` để tính derived state (bắt buộc đổi sang biến tính trực tiếp hoặc `useMemo`/`computed`/`$derived`); import/export/dependency thừa không dùng.
    - **[P1 — Inverted Dependency & Duplicate Logic]**: File ở tầng `lib/` hoặc `store/` import ngược từ `components/`; viết lặp lại cùng một hàm helper ở 2 nơi.
 

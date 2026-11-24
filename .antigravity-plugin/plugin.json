@@ -1,0 +1,21 @@
+{
+  "name": "elegans",
+  "version": "1.1.0",
+  "description": "Elegans 6-Agent Master Frontend Architecture with 100% Rust Core (Zero Python, Zero Bloat)",
+  "author": {
+    "name": "Vmax Martis",
+    "url": "https://github.com/vmaxmartis09"
+  },
+  "homepage": "https://github.com/vmaxmartis09/elegans",
+  "repository": "https://github.com/vmaxmartis09/elegans",
+  "license": "MIT",
+  "keywords": [
+    "antigravity",
+    "agy",
+    "elegans",
+    "frontend-swarm",
+    "rust-core",
+    "zero-slop",
+    "fe-master"
+  ]
+}

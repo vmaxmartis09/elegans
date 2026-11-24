@@ -6,6 +6,12 @@
         "command": "./ai/bin/fe-core route --agy"
       }
     ],
+    "PreToolUse": [
+      {
+        "matcher": "run_command|write_file|edit_file",
+        "command": "./ai/bin/fe-core env-guard ."
+      }
+    ],
     "PostToolUse": [
       {
         "matcher": "Write|Edit|edit_file|write_file",

@@ -46,8 +46,26 @@ irm https://raw.githubusercontent.com/vmaxmartis09/elegans/main/update.ps1 | iex
 Lệnh update sẽ tự động kéo toàn bộ bản cập nhật mới nhất của:
 - Binary Rust `fe-core`
 - Toàn bộ 6 Subagents
-- Toàn bộ 10 Core Skills
+- Toàn bộ 13 Core Skills (kèm bộ ba kiểm định chuyên sâu từ ECC: WCAG 2.2 AA, Zero-Memory-Leak Performance, OWASP Web Security)
+- Bộ quy tắc TypeScript/React Hardening Rules
 - Tự động chạy `fe-core sync` để đảm bảo 0-drift!
+
+---
+
+## 🛡️ Tinh Hoa Kiểm Định & Bảo Vệ (Chắt Lọc & Nâng Cấp Từ ECC)
+
+Hệ thống Elegans đã được tích hợp chọn lọc các kỹ thuật bảo vệ hàng đầu từ hệ sinh thái ECC (`affaan-m/ECC`), chuẩn hóa 100% theo triết lý Rust Native & Zero-Bloat của Elegans:
+1. **PreToolUse & PostToolUse Guardrails**:
+   - Tự động kích hoạt `./ai/bin/fe-core env-guard` trước khi thực thi `run_command` hoặc `write_file` / `edit_file` (chặn rò rỉ secret token, kiểm tra `.env` parity).
+   - Tự động kích hoạt `./ai/bin/fe-core check-edit` sau khi sửa file (chặn component > 250 dòng, hook > 150 dòng, vi phạm anti-slop).
+2. **Bộ 3 Skills Kiểm Toán Chuyên Sâu**:
+   - `fe-accessibility-wcag`: Đo chuẩn WCAG 2.2 AA, bắt buộc `aria-label` cho nút icon (Quy tắc UI số 4), touch target mobile >= 44x44px.
+   - `fe-performance-audit`: Diệt sạch Memory Leak (uncleaned ResizeObserver/GSAP ScrollTrigger/pending fetch), diệt lỗi Hydration Mismatch và kiểm soát Core Web Vitals (LCP < 2.5s, CLS = 0.00, INP < 200ms).
+   - `web-security-owasp`: Chu vi an toàn OWASP 2025 Client-Side, chống XSS, kiểm soát Iframe Sandboxing & CSP.
+3. **Quy Tắc TypeScript & React Hardening (`rules/typescript-hardening.md`)**:
+   - Cấm `any` (thay bằng `unknown` + type narrowing/Zod).
+   - Cấm dùng `useEffect` cho Derived State.
+   - Bắt buộc trả về hàm cleanup cho mọi effect bất đồng bộ và gesture listener (chống dính UI).
 
 ---
 

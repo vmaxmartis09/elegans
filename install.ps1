@@ -17,7 +17,9 @@ $dirs = @(
     "$TargetDir\.claude\agents",
     "$TargetDir\.claude\skills",
     "$TargetDir\.agents\plugins\fe-master-team\agents",
-    "$TargetDir\.opencode"
+    "$TargetDir\.opencode",
+    "$TargetDir\.antigravity-plugin",
+    "$TargetDir\rules"
 )
 foreach ($d in $dirs) {
     if (-not (Test-Path $d)) {
@@ -58,6 +60,12 @@ if (Test-Path "$ScriptDir\templates") {
     Copy-Item "$ScriptDir\templates\.opencode\opencode.json" "$TargetDir\opencode.json" -Force -ErrorAction SilentlyContinue
     Copy-Item "$ScriptDir\templates\.cursorrules" "$TargetDir\.cursorrules" -Force -ErrorAction SilentlyContinue
     Copy-Item "$ScriptDir\templates\AGENTS.md" "$TargetDir\AGENTS.md" -Force -ErrorAction SilentlyContinue
+    if (Test-Path "$ScriptDir\templates\.antigravity-plugin") {
+        Copy-Item -Recurse "$ScriptDir\templates\.antigravity-plugin\*" "$TargetDir\.antigravity-plugin\" -Force -ErrorAction SilentlyContinue
+    }
+    if (Test-Path "$ScriptDir\templates\rules") {
+        Copy-Item -Recurse "$ScriptDir\templates\rules\*" "$TargetDir\rules\" -Force -ErrorAction SilentlyContinue
+    }
 }
 
 # 5. Đồng bộ

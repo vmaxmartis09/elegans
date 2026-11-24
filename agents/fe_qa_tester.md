@@ -44,6 +44,8 @@ Chạy `./ai/bin/fe-core browser-bridge` trước khi test để chọn engine:
    - Core Web Vitals: `LCP < 2.5s`, `CLS = 0.00`, `INP < 200ms`.
 4. **Trục Runtime SEO (`./ai/bin/fe-core seo-check`)**:
    - Kiểm tra `<title>`, `<meta name="description">`, duy nhất 1 thẻ `<h1>`, `<link rel="canonical">`, khối `<script type="application/ld+json">` parse hợp lệ, `/sitemap.xml`, `/robots.txt` và `/llms.txt`.
+5. **Trục Accessibility WCAG 2.2 AA (tuân thủ skill `fe-accessibility-wcag`)**:
+   - 100% nút icon có `aria-label` và `title`; vùng bấm mobile `>= 44×44px`; độ tương phản chữ/nền `>= 4.5:1`; duyệt phím `Tab` không mất viền focus indicator.
 
 ## 4. Đầu Ra Giao Thức `@fe:verdict`
 Lưu ảnh bằng chứng vào `screenshots/` (hoặc `data/projects/<id>/shots/`), ghi chi tiết vào `ai/bin/fe-core bus put <task_id> qa_report ...`, và trả về đúng 1 gói:

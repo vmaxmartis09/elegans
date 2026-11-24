@@ -66,3 +66,11 @@ Nếu dự án có các file sau thì mọi agent sửa hoặc duyệt UI **ph�
 - `ANIMATION_PERFORMANCE.md` — rule animation, tier máy yếu/mạnh.
 - Phân vai: `fe_ui_ux_critic` duyệt design · `fe_senior_dev` code theo token · `fe_code_auditor` kiểm import `Web*` + sloplint · `fe_qa_tester` chạy checklist QA.
 - Rule dự án luôn thắng rule chung của Elegans khi mâu thuẫn.
+
+---
+
+## 5. BỘ QUY TẮC BẢO MẬT & KIỂM ĐỊNH NÂNG CAO (HARDENED STANDARDS)
+- **PreToolUse / PostToolUse Automatic Guard**: Trước khi chạy `run_command` hoặc ghi file, harness tự động chạy `fe-core env-guard` chặn rò rỉ secret. Sau khi ghi file, tự động chạy `fe-core check-edit`.
+- **Accessibility (WCAG 2.2 AA)**: Mọi nút icon bắt buộc có `aria-label`, touch target mobile >= 44x44px.
+- **Zero Memory Leaks & Zero Hydration Error**: Mọi observer/listener/effect phải return hàm cleanup (chống dính UI); cấm dùng `useEffect` cho Derived State; cấm dùng `any`.
+

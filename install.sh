@@ -18,7 +18,9 @@ mkdir -p "$TARGET_DIR/ai/bin" \
          "$TARGET_DIR/.claude/agents" \
          "$TARGET_DIR/.claude/skills" \
          "$TARGET_DIR/.agents/plugins/fe-master-team/agents" \
-         "$TARGET_DIR/.opencode"
+         "$TARGET_DIR/.opencode" \
+         "$TARGET_DIR/.antigravity-plugin" \
+         "$TARGET_DIR/rules"
 
 # 2. Cài đặt binary Rust fe-core
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd || echo "")"
@@ -59,6 +61,12 @@ if [ -d "$SCRIPT_DIR/templates" ]; then
     cp "$SCRIPT_DIR/templates/.opencode/opencode.json" "$TARGET_DIR/opencode.json" 2>/dev/null || true
     cp "$SCRIPT_DIR/templates/.cursorrules" "$TARGET_DIR/.cursorrules" 2>/dev/null || true
     cp "$SCRIPT_DIR/templates/AGENTS.md" "$TARGET_DIR/AGENTS.md" 2>/dev/null || true
+    if [ -d "$SCRIPT_DIR/templates/.antigravity-plugin" ]; then
+        cp -r "$SCRIPT_DIR/templates/.antigravity-plugin/"* "$TARGET_DIR/.antigravity-plugin/" 2>/dev/null || true
+    fi
+    if [ -d "$SCRIPT_DIR/templates/rules" ]; then
+        cp -r "$SCRIPT_DIR/templates/rules/"* "$TARGET_DIR/rules/" 2>/dev/null || true
+    fi
 fi
 
 # 5. Kiểm tra đồng bộ
