@@ -52,6 +52,13 @@ components/<feature-name>/ (hoặc features/<feature-name>/)
 
 ---
 
+## 4. QUY TẮC UI: ICON THAY CHỮ & HEADER TRONG SUỐT
+- Ưu tiên **icon** thay cho text trên nút/hành động; nếu icon rõ nghĩa thì không thêm chữ.
+- Nút icon bắt buộc có `aria-label` (và `title` nếu cần gợi ý), kích thước nhỏ gọn (h-6~h-8, tròn).
+- **Quy tắc Header**: Header/floating controls cố định góc trên **LUÔN TRONG SUỐT (`bg-transparent`)**, tuyệt đối không phủ màu đục hay shadow đen che khuất nội dung bên dưới.
+
+---
+
 ## 3b. RULE RIÊNG CỦA DỰ ÁN — BẮT BUỘC ĐỌC TRƯỚC KHI SỬA/DUYỆT UI
 Nếu dự án có các file sau thì mọi agent sửa hoặc duyệt UI **phải đọc trước**; vi phạm thì `fe_ui_ux_critic` trả lại:
 - `docs/MOBILE_DESIGN_CONTRACT.md` — spacing token, font mobile, không container, bảng Gesture Priority, tách Web/Mobile, checklist QA.
