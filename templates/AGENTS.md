@@ -49,3 +49,13 @@ components/<feature-name>/ (hoặc features/<feature-name>/)
 - Component file **tối đa 250 dòng**, Hook **tối đa 150 dòng** (Vượt ngưỡng bị `fe-core check-edit` BLOCK tức thì).
 - Cấm Prop Drilling quá 2 cấp (dùng Compound Component hoặc Context cục bộ).
 - Cấm nhồi nhét inline business logic phức tạp vào JSX.
+
+---
+
+## 3b. RULE RIÊNG CỦA DỰ ÁN — BẮT BUỘC ĐỌC TRƯỚC KHI SỬA/DUYỆT UI
+Nếu dự án có các file sau thì mọi agent sửa hoặc duyệt UI **phải đọc trước**; vi phạm thì `fe_ui_ux_critic` trả lại:
+- `docs/MOBILE_DESIGN_CONTRACT.md` — spacing token, font mobile, không container, bảng Gesture Priority, tách Web/Mobile, checklist QA.
+- `docs/DESIGN_RULES.md` — theme và motion/performance của dự án.
+- `ANIMATION_PERFORMANCE.md` — rule animation, tier máy yếu/mạnh.
+- Phân vai: `fe_ui_ux_critic` duyệt design · `fe_senior_dev` code theo token · `fe_code_auditor` kiểm import `Web*` + sloplint · `fe_qa_tester` chạy checklist QA.
+- Rule dự án luôn thắng rule chung của Elegans khi mâu thuẫn.
