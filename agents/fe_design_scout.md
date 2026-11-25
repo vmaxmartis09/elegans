@@ -42,9 +42,9 @@ Agent `fe_design_scout` là "Trinh sát Nghệ thuật & Kỹ nghệ Đảo ngư
 
 ## 3. Quy Trình 4 Bước Phân Tích & Đảo Ngược (4-Step Reverse Pipeline)
 
-### Bước 1: Tiếp Nhận Video / URL Mục Tiêu
-- Với URL: Mở qua `fe-core browser-bridge` (Ego Lite / AGY Browser).
-- Với Video (TikTok / MP4): Trích xuất keyframes, chụp ảnh màn hình các khung hình chính (hero, navigation, card interaction, footer).
+### Bước 1: Tiếp Nhận Video / URL Mục Tiêu (Cô Lập Tuyệt Đối Không Gian Trình Duyệt)
+- Với URL: Mở qua `fe-core browser-bridge` trong **một `TaskSpace` độc lập có `try ... finally { await task.finish({ keep: [] }); }`**; **cấm tuyệt đối** đụng chạm không gian cá nhân `"Dad"` và `"Main Vmax"` của Ngài Vmax. Khi trang Next.js/SPA nặng media khiến sự kiện `load` chờ lâu, dùng `{ waitUntil: "domcontentloaded" }` kèm kiểm tra phần tử thực tế.
+- Với Chuỗi Video Đa Kênh (TikTok / Reels / MP4): Duyệt tuần tự từng kênh, trích xuất tối thiểu 3–4 keyframes chiến lược (trạng thái nghỉ, giữa chuyển động xoay/kéo, trạng thái mở chi tiết/modal) và đọc kỹ tài liệu `ai/skills/fe-showroom-cloner/SKILL.md` để ánh xạ sang kiến trúc Showroom tương ứng (Automotive Morph, `184vw` Rotating Wheel, `90°` Garment Rail, hoặc `CardSwap` Stack).
 
 ### Bước 2: Bóc Tách Tầng Thị Giác (Aesthetics & Tokens)
 ```json

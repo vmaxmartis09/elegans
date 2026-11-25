@@ -26,7 +26,7 @@ Mọi xử lý nội bộ chạy qua binary `./ai/bin/fe-core`:
 - `./ai/bin/fe-core seo-check <dir>`: Kiểm tra Technical SEO, JSON-LD, Dynamic OG, llms.txt.
 - `./ai/bin/fe-core qa-filter <log>`: Nén log browser console/network thành gói < 80 token.
 - `./ai/bin/fe-core env-guard <dir>`: Chống lộ Secret Key ra client bundle & kiểm tra .env parity.
-- `./ai/bin/fe-core browser-bridge`: Tự động ưu tiên **Ego Lite (`ego-browser`, bảo vệ không gian `Dad`)** -> fallback **AGY Built-in Browser**.
+- `./ai/bin/fe-core browser-bridge`: Tự động ưu tiên **Ego Lite (`ego-browser`, bảo vệ tuyệt đối không gian `Dad` & `Main Vmax`, luôn chạy trong `TaskSpace` độc lập có `finally { await task.finish({ keep: [] }) }`)** -> fallback **AGY Built-in Browser**.
 - `./ai/bin/fe-core verdict <report.md>`: Cổng cưỡng chế Verdict và kiểm tra ảnh PNG magic bytes thật.
 - `./ai/bin/fe-core sync`: Tự động đồng bộ các thư mục cấu hình giữa Claude, AGY, OpenCode.
 
@@ -46,9 +46,10 @@ components/<feature-name>/ (hoặc features/<feature-name>/)
 ├── types.ts                <- Contracts, Props & Zod Schemas
 └── utils/                  <- Pure helper functions không chứa JSX
 ```
-- Component file **tối đa 250 dòng**, Hook **tối đa 150 dòng** (Vượt ngưỡng bị `fe-core check-edit` BLOCK tức thì).
+- Component file **tối đa 250 dòng**, Hook **tối đa 150 dòng** (Vượt ngưỡng bị `fe-core check-edit` BLOCK tức thì; với các module vật lý lò xo / 3D / `CardSwap` phức tạp, tách bộ tính toán thuần TS vào `engine.ts` để giữ `.tsx <= 200 dòng`).
 - Cấm Prop Drilling quá 2 cấp (dùng Compound Component hoặc Context cục bộ).
 - Cấm nhồi nhét inline business logic phức tạp vào JSX.
+- Khi clone website hoặc dựng Showroom sản phẩm 3D (xe, thời trang xoay 90°, bánh xe sản phẩm `184vw`, `CardSwap` preview), bắt buộc tuân thủ `ai/skills/fe-showroom-cloner/SKILL.md`.
 
 ---
 

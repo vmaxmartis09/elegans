@@ -46,8 +46,8 @@ pub fn run_browser_bridge() -> i32 {
     let engine = detect_preferred_browser();
     let out = json!({
         "engine": engine,
-        "priority": ["1:ego-lite(protect-Dad-space)", "2:agy-builtin-browser(subagent:browser)", "3:playwright-mcp(140+devices)"],
-        "protected_spaces": ["Dad"]
+        "priority": ["1:ego-lite(protect-Dad-and-Main-Vmax)", "2:agy-builtin-browser(subagent:browser)", "3:playwright-mcp(140+devices)"],
+        "protected_spaces": ["Dad", "Main Vmax"]
     });
     println!("@fe:browser{}", out);
     0
@@ -211,10 +211,14 @@ pub fn run_sync(args: &[String]) -> i32 {
         "vicieo-signature-ui",
         "multi-stack-fe-senior",
         "web-genres-playbooks",
+        "fe-showroom-cloner",
         "fe-seo-geo-master",
         "fe-qa-responsive-emu",
         "fe-code-quality-gate",
         "fe-multi-cloud-deploy",
+        "fe-accessibility-wcag",
+        "fe-performance-audit",
+        "web-security-owasp",
     ];
     let ai_skills = root.join("ai/skills");
     let claude_skills = root.join(".claude/skills");

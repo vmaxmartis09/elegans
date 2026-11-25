@@ -1,6 +1,6 @@
 ---
 name: web-genres-playbooks
-description: "8 Production Web Archetype Playbooks: (1) Enterprise Dashboard & BI, (2) CRM/ERP/Kanban/DataGrid, (3) E-Commerce & Stripe/PayOS Checkout, (4) SaaS Landing & Conversion Funnel, (5) 3D WebGL (R3F/Drei) & Official GSAP Scrollytelling, (6) Content/Blog/Docs/LMS, (7) Interactive Node Canvas Studio, (8) Social/Realtime Chat."
+description: "9 Production Web Archetype Playbooks: (1) Enterprise Dashboard & BI, (2) CRM/ERP/Kanban/DataGrid, (3) E-Commerce & Stripe/PayOS Checkout, (4) SaaS Landing & Conversion Funnel, (5) 3D WebGL (R3F/Drei) & Official GSAP Scrollytelling, (6) Content/Blog/Docs/LMS, (7) Interactive Node Canvas Studio, (8) Social/Realtime Chat, (9) Interactive 3D Product Showrooms & Zero-Loss Clones."
 ---
 
 # 8 Playbooks Xây Dựng Mọi Loại Hình Web Chuyên Biệt
@@ -36,3 +36,7 @@ description: "8 Production Web Archetype Playbooks: (1) Enterprise Dashboard & B
 
 ## 8. Social Feed, Community & Realtime Chat (`ueberdosis/tiptap`)
 - **Feed & Chat**: Cuộn vô tận 2 chiều giữ nguyên scroll offset, soạn thảo Rich Text bằng `Tiptap` (`@mention`, `/` slash commands), upload media phân mảnh có preview, Optimistic Reactions.
+
+## 9. Interactive 3D Product Showrooms & Zero-Loss Website Clones (`fe-showroom-cloner`)
+- **4 Mẫu Showroom Chuyển Đổi Cao**: (a) Showroom xe/xa xỉ dùng AI Liquid Morph video (`hero.mp4` + `hero-phone.mp4`) + GSAP `SplitText`; (b) Bánh xe xoay `184vw` chia 20 khe `18deg` hiển thị đồng thời 3 hũ nghiêng tự nhiên kèm `@property --bg` và `<textPath>` cong; (c) Giá treo thời trang xoay `90°` Side-Profile → Front-View dùng `flex: 1 1 0` co giãn lọt lòng khung và `perspective` riêng từng khe; (d) Chồng thẻ 3D `CardSwap` đồng bộ hover/click 2 chiều mở live `<iframe>` modal (`bg-transparent` header).
+- **Đóng gói & Phục vụ tĩnh**: Đặt tại `public/sites/<slug>/index.html` + `public/sites/previews/<slug>.webp` (~15–45KB), cấu hình `redirects()` `/sites/:slug` -> `/sites/:slug/index.html` để bảo toàn đường dẫn tài nguyên tương đối.

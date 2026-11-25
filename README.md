@@ -46,7 +46,7 @@ irm https://raw.githubusercontent.com/vmaxmartis09/elegans/main/update.ps1 | iex
 Lệnh update sẽ tự động kéo toàn bộ bản cập nhật mới nhất của:
 - Binary Rust `fe-core`
 - Toàn bộ 6 Subagents
-- Toàn bộ 13 Core Skills (kèm bộ ba kiểm định chuyên sâu từ ECC: WCAG 2.2 AA, Zero-Memory-Leak Performance, OWASP Web Security)
+- Toàn bộ 14 Core Skills (bao gồm **`fe-showroom-cloner`** cho Reverse-Engineering REA + Showroom 3D + `CardSwap` 60fps, cùng bộ ba kiểm định chuyên sâu từ ECC: WCAG 2.2 AA, Zero-Memory-Leak Performance, OWASP Web Security)
 - Bộ quy tắc TypeScript/React Hardening Rules
 - Tự động chạy `fe-core sync` để đảm bảo 0-drift!
 

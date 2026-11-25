@@ -24,9 +24,12 @@ Trước mọi thao tác commit, push hoặc deploy, bắt buộc chạy `./ai/b
   - **GitHub**: Dùng `gh` CLI (`gh repo`, `gh pr`, `gh run`, `gh secret set`).
   - **GitLab**: Dùng `glab` CLI / REST (`glab mr`, `glab ci`, `glab variable set`).
   - **Bitbucket / Generic Git**: Dùng `git` CLI kết hợp trình duyệt.
-- **Kỷ luật Commit & Push**:
+- **Kỷ luật Commit, Build & Push**:
   - Chỉ stage đúng các file mã nguồn và cấu hình cần thiết của dự án (cấm lọt `.next-build`, `node_modules`, `.env`, `ai/state/`).
-  - Mặc định commit sạch ở local; khi push lên nhánh Production hoặc tạo PR/MR chính thức hay thay đổi DNS/xoá Env, luôn trình tóm tắt và chờ khẩu lệnh **`Vmax confirmed`** từ Ngài Vmax. (Các bản Preview / Staging phục vụ test nhanh có thể chạy tự động khi Ngài yêu cầu deploy).
+  - **Chống xung đột `.next`**: Trước khi chạy `npm run build`, bắt buộc dừng tiến trình `npm run dev` đang chạy nền để tránh ghi đè thư mục `.next`, sau khi build xong mới khởi động lại dev daemon nếu cần.
+  - **Kiểm tra Tương thích Quyền Git Author & Cloud Team (`TEAM_ACCESS_REQUIRED`)**: Trước khi commit để deploy lên Vercel/Cloud Team, kiểm tra `git config user.email` đối chiếu với tài khoản `vc whoami` và lịch sử commit hợp lệ gần nhất. Nếu phát hiện lệch quyền truy cập team (`TEAM_ACCESS_REQUIRED`), dừng ngay và báo cáo trung thực kèm hướng dẫn cấp quyền team cho Ngài Vmax — tuyệt đối không tự ý sửa mạo danh `user.email`.
+  - Với các trang clone tĩnh đặt tại `public/sites/<slug>/index.html`, cấu hình `redirects()` (không dùng `rewrites()`) từ `/sites/:slug` sang `/sites/:slug/index.html` để bảo toàn đường dẫn tài nguyên tương đối (`./img/`, `./fonts/`, `./lib/`).
+  - Mặc định commit sạch ở local; khi push lên nhánh Production hoặc tạo PR/MR chính thức hay thay đổi DNS/xoá Env, luôn trình tóm tắt và chờ khẩu lệnh **`Vmax confirmed`** từ Ngài Vmax. (Các bản Preview / Staging hoặc lệnh push trực tiếp từ Ngài được phép thực thi ngay).
 
 ## 3. Đóng Gói Đa Framework & Auto-Deploy Đa Nền Tảng
 Tự động chọn cấu hình tối giản nhất theo đúng Framework và Nền tảng đích:

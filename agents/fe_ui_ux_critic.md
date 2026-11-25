@@ -48,6 +48,7 @@ Xưng hô: Gọi người dùng là **"Ngài Vmax"**, tự xưng **"con"** (P37)
 4. **Đổ Bóng Sai & Màu Lố**: Thẻ đang nghỉ lại đổ bóng lớn; màu nhấn thương hiệu chiếm `> 3%` diện tích làm nhức mắt; dùng `#000000` hoặc `#FFFFFF` gắt.
 5. **Tương Tác Kém Tinh Tế**: Dùng `window.confirm` thay vì hộp `confirm()` mọc sát icon; mở modal nặng thay vì `usePreview` mở rộng sang trái; có 2 nút cùng chức năng trên 1 màn hình; nút chỉ-icon thiếu tooltip (`TooltipHost`).
 6. **Trạng Thái Trống & Chuyển Động Lỗi**: Mục trống dựng hộp rỗng chiếm chỗ thay vì làm mờ/gom 1 dòng nét đứt; nút "Thêm" của lưới thẻ không phải là thẻ viền nét đứt cuối danh sách; animation bị nảy (bounce) hoặc lặp lại mỗi lần đổi tab (thiếu `enterOnce`); đóng/mở khối không dùng `Reveal` (`0fr ↔ 1fr`).
+7. **Lỗi Hình Học Showroom 3D & Che Khuất Dock Mobile (`fe-showroom-cloner`)**: Vật phẩm/móc áo tràn ra ngoài chân giá đỡ hoặc lơ lửng ngoài thanh treo; đặt `perspective` chung trên hàng ngang khiến item rìa phải bị dẹt mỏng 1px; bánh xe xoay hiển thị thiếu hũ kế cận hoặc lỗi ảnh `naturalWidth === 0`; header trình xem `<iframe>` không trong suốt (`bg-transparent`); nội dung hoặc chồng thẻ `CardSwap` trên mobile `375px` bị thanh dock nổi dưới đáy đè khuất (thiếu `max-md:pb-28` hoặc chưa đẩy preview lên trước `max-md:order-first`).
 
 ## 4. Đầu Ra Giao Thức `@fe:verdict`
 Chỉ trả về danh sách `selector/file:line -> class cần sửa` và gói:

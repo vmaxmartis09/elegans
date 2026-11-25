@@ -127,6 +127,17 @@ pub fn classify_genre(prompt_lc: &str) -> (&'static str, &'static str) {
     {
         return ("ecommerce-marketplace", "full-public-seo");
     }
+    if prompt_lc.contains("showroom")
+        || prompt_lc.contains("clone")
+        || prompt_lc.contains("rea")
+        || prompt_lc.contains("card-swap")
+        || prompt_lc.contains("cardswap")
+        || prompt_lc.contains("giá treo")
+        || prompt_lc.contains("tủ đồ")
+        || prompt_lc.contains("bánh xe")
+    {
+        return ("interactive-3d-showroom-clone", "full-public-seo");
+    }
     if prompt_lc.contains("3d")
         || prompt_lc.contains("webgl")
         || prompt_lc.contains("three.js")
@@ -206,6 +217,10 @@ pub fn classify_lane(prompt_lc: &str) -> &'static str {
     }
 
     let is_dev = prompt_lc.contains("build")
+        || prompt_lc.contains("clone")
+        || prompt_lc.contains("showroom")
+        || prompt_lc.contains("card-swap")
+        || prompt_lc.contains("cardswap")
         || prompt_lc.contains("tạo")
         || prompt_lc.contains("dựng")
         || prompt_lc.contains("code")
@@ -300,6 +315,9 @@ pub fn select_skills(lane: &str, stack: &str, genre: &str, seo: &str) -> Vec<Str
     if !genre.is_empty() {
         s.push(format!("web-genres-playbooks#{genre}"));
     }
+    if genre == "interactive-3d-showroom-clone" || genre == "creative-3d-scrollytelling" {
+        s.push("fe-showroom-cloner".to_string());
+    }
     if seo.contains("seo") {
         s.push("fe-seo-geo-master".to_string());
     }
@@ -318,6 +336,8 @@ pub fn select_skills(lane: &str, stack: &str, genre: &str, seo: &str) -> Vec<Str
 pub fn determine_agents(lane: &str, prompt_lc: &str) -> Vec<String> {
     let needs_scout = prompt_lc.contains("video")
         || prompt_lc.contains("tiktok")
+        || prompt_lc.contains("clone")
+        || prompt_lc.contains("rea")
         || prompt_lc.contains("reels")
         || prompt_lc.contains("shorts")
         || prompt_lc.contains("scout")
@@ -498,6 +518,17 @@ pub fn determine_solution_archetype(genre: &str, prompt_lc: &str, _stack: &str) 
         "2. Implement changes with Zero-Slop ViciEO UI Craft & Two-Tier State".to_string(),
         "3. Gatekeeper verification (fe-core check-edit + qa-filter)".to_string(),
     ];
+
+    if genre == "interactive-3d-showroom-clone" {
+        return (
+            "Zero-Loss Website Cloner & Interactive 3D Showroom (REA + CardSwap): Isolated Ego Lite TaskSpace, Per-Slot Perspective Rail / 20-Slot 184vw Wheel / AI Morph Video, Co-located Engine+View (<200 LOC), bg-transparent Showcase Modal.".to_string(),
+            vec![
+                "1. Scout keyframes/DOM in isolated Ego Lite TaskSpace (protect Dad & Main Vmax)".to_string(),
+                "2. Build showroom in public/sites/<slug>/ + Co-located CardSwap/Modal (engine.ts + <=200 LOC JSX)".to_string(),
+                "3. Verify sloplint 100/100, mobile 375px dock clearance (pb-28) & redirects(/sites/:slug)".to_string(),
+            ],
+        );
+    }
 
     if prompt_lc.contains("filter") || prompt_lc.contains("tìm kiếm") || prompt_lc.contains("sort") {
         (

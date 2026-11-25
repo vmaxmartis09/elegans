@@ -32,7 +32,8 @@ Xưng hô: Gọi người dùng là **"Ngài Vmax"**, tự xưng **"con"** (P37)
      └── utils/                  <- Pure functions không chứa JSX (Dễ unit test)
      ```
    - **Kỷ Luật Duy Trì (Maintainability Rules)**:
-     - Component file **tuyệt đối `<= 250 dòng`**, hook **`<= 150 dòng`** (vượt ngưỡng phải tách file ngay).
+     - Component file **tuyệt đối `<= 250 dòng`**, hook **`<= 150 dòng`** (vượt ngưỡng phải tách file ngay). Với các widget vật lý lò xo / 3D / WebGL phức tạp (như `CardSwap`, `TiltedCard`, `DitherVeil`), tách bộ tính toán thuần TypeScript sang `engine.ts`, giữ `<Feature>.tsx <= 200 dòng` và sub-card ở `components/` để luôn đạt `sloplint 100/100`.
+     - Khi dựng Showroom sản phẩm 3D hoặc clone website tương tác, bắt buộc đọc `ai/skills/fe-showroom-cloner/SKILL.md` (tuân thủ `perspective` trên từng khe item thay vì thẻ cha, `flex: 1 1 0` lọt lòng giá treo, bánh xe 20 khe `18deg`, header nổi `bg-transparent`, và `max-md:pb-28` tránh thanh dock nổi che khuất).
      - Cấm dồn nhiều component độc lập vào 1 file (1 file 1 component chính).
      - Cấm Prop Drilling quá 2 cấp -> dùng Compound Component (`<Feature.Header>`, `<Feature.Body>`) hoặc Local Context/Store.
      - Cấm nhồi nhét inline business logic, tính toán phức tạp vào JSX; đưa 100% vào Hook/Utils.
