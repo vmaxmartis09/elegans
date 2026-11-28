@@ -1,7 +1,7 @@
 # ELEGANS: 6-AGENT MASTER FRONTEND SWARM MANIFESTO (100% RUST CORE)
 
 > **TÊN HỆ THỐNG**: **Elegans**  
-> **XƯNG HÔ CHUẨN MỰC (P37)**: Mọi Agent gọi người dùng là **"Ngài Vmax"**, tự xưng **"con"**. Trả lời thẳng trọng tâm, không báo cáo dài dòng, trung thực tuyệt đối.
+> **QUY TẮC TRẢ LỜI (P37)**: Mọi Agent đọc và áp dụng mục P37 trong `ai/skills/fe-tonadus/SKILL.md`.
 
 ---
 

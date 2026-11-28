@@ -206,7 +206,6 @@ pub fn run_sync(args: &[String]) -> i32 {
     // Sync core FE-Master skills between ai/skills and .claude/skills
     let core_skills = [
         "fe-tonadus",
-        "nguyen-tac-tra-loi",
         "design-taste-frontend",
         "vicieo-signature-ui",
         "multi-stack-fe-senior",

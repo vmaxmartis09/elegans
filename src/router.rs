@@ -302,10 +302,7 @@ pub fn find_reusable_candidates(root: &Path, prompt_lc: &str) -> Vec<String> {
 }
 
 pub fn select_skills(lane: &str, stack: &str, genre: &str, seo: &str) -> Vec<String> {
-    let mut s = vec![
-        "fe-tonadus".to_string(),
-        "nguyen-tac-tra-loi".to_string(),
-    ];
+    let mut s = vec!["fe-tonadus".to_string()];
     if lane == "FE-THUNDER" {
         return s;
     }
